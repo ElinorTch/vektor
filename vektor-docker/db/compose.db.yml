@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: vektor_db
+    environment:
+      POSTGRES_USER: vektoruser
+      POSTGRES_PASSWORD: vektorpassword
+      POSTGRES_DB: vektordb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - vektor_network
+
+  adminer:
+    image: adminer:latest
+    container_name: vektor_adminer
+    depends_on:
+      - postgres
+    ports:
+      - "8081:8080"
+    networks:
+      - vektor_network

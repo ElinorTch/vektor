@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  postgres:
+    extends:
+      file: ./vektor-docker/db/compose.db.yml
+      service: postgres
+
+  adminer:
+    extends:
+      file: ./vektor-docker/db/compose.db.yml
+      service: adminer
+
+volumes:
+  postgres_data:
+
+networks:
+  vektor_network:
+    driver: bridge
